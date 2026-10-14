@@ -44,7 +44,7 @@ public class ExplorerSearchTest {
         assertThrows(IllegalArgumentException.class, () -> ExplorerSearch.reachableArea(island));
     }
 
-        @Test
+    @Test
     public void testReachableArea_allReachable() {
         int[][] island = {
             {1,1,1,1,1,1},
@@ -58,5 +58,32 @@ public class ExplorerSearchTest {
         assertEquals(30, actual);
     }
 
-    
+        @Test
+    public void testReachableArea_inACorner() {
+        int[][] island = {
+            {0,2,1,1,1,1},
+            {1,1,1,1,1,1},
+            {2,1,1,2,1,1},
+            {1,1,1,1,1,1},
+            {1,1,1,1,1,1},
+        };
+
+        int actual = ExplorerSearch.reachableArea(island);
+        assertEquals(27, actual);
+    }
+
+        @Test
+    public void testReachableArea_diagonalEscape() {
+        int[][] island = {
+            {1,1,1,2,1,1},
+            {1,1,1,2,1,1},
+            {1,1,1,1,2,1},
+            {1,1,1,3,0,3},
+            {1,1,1,1,3,1},
+        };
+
+        int actual = ExplorerSearch.reachableArea(island);
+        assertEquals(1, actual);
+    }
+
 }
